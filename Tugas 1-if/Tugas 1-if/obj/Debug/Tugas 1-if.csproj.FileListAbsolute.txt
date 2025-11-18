@@ -1,0 +1,8 @@
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\bin\Debug\Tugas 1-if.exe.config
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\bin\Debug\Tugas 1-if.exe
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\bin\Debug\Tugas 1-if.pdb
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\obj\Debug\Tugas 1-if.csproj.AssemblyReference.cache
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\obj\Debug\Tugas 1-if.csproj.CoreCompileInputs.cache
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\obj\Debug\Tugas 1-if.exe
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\obj\Debug\Tugas 1-if.pdb
+C:\Nafakhatul Khimayah\Tugas 1-if\Tugas 1-if\obj\Debug\Tugas 1-if.exe.config
