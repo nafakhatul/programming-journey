@@ -1,0 +1,8 @@
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\bin\Debug\Proyek Akhir_Nafakhatul.exe.config
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\bin\Debug\Proyek Akhir_Nafakhatul.exe
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\bin\Debug\Proyek Akhir_Nafakhatul.pdb
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\obj\Debug\Proyek Akhir_Nafakhatul.csproj.AssemblyReference.cache
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\obj\Debug\Proyek Akhir_Nafakhatul.csproj.CoreCompileInputs.cache
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\obj\Debug\Proyek Akhir_Nafakhatul.exe
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\obj\Debug\Proyek Akhir_Nafakhatul.pdb
+C:\Nafakhatul Khimayah\Proyek Akhir_Nafakhatul\Proyek Akhir_Nafakhatul\obj\Debug\Proyek Akhir_Nafakhatul.exe.config
