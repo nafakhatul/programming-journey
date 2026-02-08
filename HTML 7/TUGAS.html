@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Calon Siswa Baru SMK</title>
+</head>
+
+<body>
+    <h1>FORMULIR PENDAFTARAN CALON SISWA BARU SMK</h1>
+    <form action="/submit" method="post">
+        <fieldset>
+            <legend>BIODATA SISWA</legend>
+            <table>
+                <tr>
+                    <td>No. UN SMP/MTs/Sederajat</td>
+                    <td><input type="text" name="No.UnSmpMtsSederajat" size="150px"></td>
+                </tr>
+                <tr>
+                    <td>Nama Lengkap</td>
+                    <td><input type="text" name="nama_lengkap" size="150px"></td>
+                </tr>
+                <tr>
+                    <td>Jenis Kelamin</td>
+                    <td><label for="lakilaki">
+                            <input type="radio" id="lakilaki" name="jenis_kelamin" value="lakilaki">
+                            Laki laki
+                        </label><br>
+                        <label for="perempuan">
+                            <input type="radio" id="perempuan" name="jenis_kelamin" value="perempuan">
+                            Perempuan
+                        </label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nama Orangtua/Wali</td>
+                    <td><input type="text" name="nama_orangtua" size="150px"></td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        Alamat (sesuaiKK/KTP/SuratKet.
+                        Domisilimin.6 bln Ortu/Walimurid
+                        calon siswa)
+                    </td>
+                    <td><textarea name="alamat" rows="4" style="width:100%; min-width: 300px;"></textarea> </td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kota/Kabupaten</td>
+                    <td><input type="text" name="kota_kabupaten" size="150px"></td>
+                </tr>
+                <tr>
+                    <td>Asal Sekolah</td>
+                </tr>
+                <tr>
+                    <td>Agama</td>
+                    <td>
+                        <form action=>
+                            <label for="Agama"></label><br>
+                            <select id="agama" name="agama">
+                                <option value="isl">Islam</option>
+                                <option value="kri">Kristen</option>
+                                <option value="kat">Katolik</option>
+                                <option value="hin">Hindu</option>
+                                <option value="bud">Buddha</option>
+                                <option value="kgh">Konghucu</option>
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+
+        <fieldset>
+            <table>
+                <legend>PENILAIAN</legend>
+                <tr>
+                    <td>1. Matematika</td>
+                    <td><input type="text" name="matematika"></td>
+                </tr>
+                <tr>
+                    <td>2. Bahasa Indonesia</td>
+                    <td><input type="text" name="bahasa_indonesia"></td>
+                </tr>
+                <tr>
+                    <td>3. Bahasa Inggris</td>
+                    <td><input type="text" name="bahasa_inggris"></td>
+                </tr>
+                <tr>
+                    <td>4. Ilmu Pengetahuan Alam (IPA)</td>
+                    <td><input type="text" name="ipa"></td>
+                    <td align="right">Jumlah NUN <input type="text"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">NILAI BONUS PRESTASI(NBP)</td>
+                    <td align="right"><input type="text" name="nbp"></td>
+                </tr>
+                <tr>
+                    <td>JUMLAH TOTAL NILAI AKHIR PPDB</td>
+                    <td> (Rumuas :NUN + NBP)</td>
+                    <td align="right"><input type="text" name="jumlah_total"></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</body>
+
+</html>
