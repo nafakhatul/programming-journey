@@ -1,0 +1,44 @@
+    .warna1 {
+
+        background-color: palevioletred;
+        color: pink;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .warna2 {
+        background-color: #4b7bff;
+        color: blue;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .warna3 {
+        background-color: rgb(105, 5, 5);
+        color: red;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .warna4 {
+        background-color: rgb(96, 50, 5);
+        color: chocolate;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .warna5 {
+        background-color: hsl (440, 200%, 70%);
+        color: black;
+        padding: 10px;
+
+        margin: 5px;
+    }
+
+    .warna6 {
+        background-color: hsla (400, 150%, 50%, 0.10);
+        color: purple;
+        padding: 10px;
+        margin: 5px;
+
+    }
