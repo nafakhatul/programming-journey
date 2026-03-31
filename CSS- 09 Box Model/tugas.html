@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - Latihan Box Model</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: skyblue;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 0.8em;
+            background-color: white;
+            padding: 5px;
+            margin-top: 10px auto;
+            overflow: hidden;
+
+
+        }
+
+        .profil-picimg {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+
+        article {
+            border: 1px solid silver;
+            border-radius: 0.8em;
+            padding: 1.5em;
+            margin-bottom: 1.5em;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .action-buttons {
+            margin-top: 1.5em;
+        }
+
+        .action-buttons button {
+            display: inline;
+            margin-right: 0.5em;
+            padding: 0.3em 0.8em;
+            border-radius: 0.5em;
+            border: 1px solid silver;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 0.8em;
+            overflow: hidden;
+        }
+
+        .info-table th {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-bottom: 2px solid silver;
+        }
+
+        .info-table td {
+            padding: 15px;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+
+        footer {
+            font-size: small;
+            margin-top: 2em;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Profil Saya</h1>
+        <p>Foto Saya</p>
+        <div style="display: flex; justify-content: center;">
+            <div class="profile-pic">
+                <img src="nafa.png" alt="Foto Profil">
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <p>Saya adalah seorang pelajar di SMK Negeri 1 Kandeman.
+            Jurusan saya adalah Pengembangan Perangkat Lunak dan Gim. Saya memiliki hobi membaca novel dan menonton
+            film.</p>
+        <div class="action-buttons">
+            <button>&#x1F44D; Like</button>
+            <button>&#128172; Comment</button>
+            <button>&#10150; Share</button>
+        </div>
+    </article>
+
+    <article>
+        <p>Kompetensi yang sudah saya pelajari di jurusan saya adalah C#, HTML, dan CSS.
+            Saya sudah dapat membuat web sederhana dan memahami dasar dasar pemrograman.</p>
+        <div class="action-buttons">
+            <button>&#x1F44D; Like</button>
+            <button>&#128172; Comment</button>
+            <button>&#10150; Share</button>
+        </div>
+    </article>
+
+    <table class="info-table" border="1" style="border-color: silver;">
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Pengalaman</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li>HTML</li>
+                        <li>Membuat buket bunga</li>
+                        <li>Membaca puisi</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>MC pada acara rutinan saat MTs</li>
+                        <li>Panitia pengambilan badge PMR saat MTs</li>
+                        <li>Panitia MPLS MTs</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        Copyright &copy; X PPLG
+    </footer>
+
+</body>
+
+</html>
