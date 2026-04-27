@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas</title>
+    <style>
+        /* Pengaturan umum untuk setiap article agar overflow terjadi */
+        article {
+            width: 250px;
+            height: 100px;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        #article1 {
+            overflow: visible;
+            background-color: lightblue;
+        }
+
+        #article2 {
+            overflow: hidden;
+            background-color: lightcoral;
+        }
+
+        #article3 {
+            overflow: scroll;
+            background-color: lightgreen;
+        }
+
+        #article4 {
+            overflow: auto;
+            background-color: lightyellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Tugas CSS Overflow</h1>
+
+    <h2>Article 1: Overflow Visible</h2>
+    <article id="article1">
+        Properti overflow dengan nilai visible adalah perilaku default browser. Artinya, konten tidak akan dipotong
+        meskipun ukurannya melebihi dimensi wadah yang telah ditentukan. Hal ini menyebabkan konten meluap keluar dari
+        kotak elemen. Sangat penting untuk memahami bahwa tampilan ini bisa menabrak elemen lain di sekitarnya jika tata
+        letak tidak direncanakan dengan baik sebelumnya.
+    </article>
+
+    <h2>Article 2: Overflow Hidden</h2>
+    <article id="article2">
+        Properti overflow dengan nilai hidden akan memotong konten yang meluap dari wadahnya. Bagian konten yang berada
+        di luar batas kotak elemen akan disembunyikan sepenuhnya dari pandangan pengguna. Teknik ini sering digunakan
+        ketika Anda ingin menjaga tata letak tetap rapi dan bersih, meskipun ada risiko kehilangan informasi jika konten
+        yang tersisa tidak dapat diakses melalui interaksi lain.
+    </article>
+
+    <h2>Article 3: Overflow Scroll</h2>
+    <article id="article3">
+        Properti overflow dengan nilai scroll akan memaksa browser untuk menampilkan bilah gulir (scrollbar), baik
+        horizontal maupun vertikal, di dalam elemen tersebut. Pengguna harus melakukan scroll agar bisa melihat seluruh
+        isi konten yang terpotong. Kelebihan utama dari metode ini adalah pengguna selalu memiliki akses ke konten yang
+        tersembunyi, meskipun bilah gulir tetap muncul bahkan jika sebenarnya tidak diperlukan.
+    </article>
+
+    <h2>Article 4: Overflow Auto</h2>
+    <article id="article4">
+        Properti overflow dengan nilai auto sangat mirip dengan nilai scroll. Perbedaan utamanya adalah bilah gulir
+        hanya akan ditambahkan oleh browser ketika benar-benar diperlukan, yaitu saat konten memang melampaui batas
+        dimensi wadah. Jika konten masih cukup untuk masuk ke dalam wadah, maka bilah gulir tidak akan ditampilkan,
+        sehingga antarmuka terlihat lebih bersih dan responsif terhadap perubahan isi.
+    </article>
+
+</body>
+
+</html>
