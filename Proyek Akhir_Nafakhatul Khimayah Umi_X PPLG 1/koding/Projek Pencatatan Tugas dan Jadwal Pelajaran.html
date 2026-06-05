@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web pencatat tugas</title>
+
+    <style>
+        /* Variabel Warna Global & Reset Browser */
+        :root {
+            --soft-pink: #fce4ec;
+            --pink-accent: #f48fb1;
+            --pink-hover: #f06292;
+            --white: white;
+            --text-color: #5d4037;
+            --success-bg: #a5d6a7;
+            --success-border: #2e7d32;
+            --success-text: #1b5e20;
+        }
+
+        /* Reset margin, padding, dan kalkulasi ukuran elemen agar seragam */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mengatur tata letak halaman utama */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--soft-pink);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Wadah putih utama pembungkus aplikasi */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Menyembunyikan radio button asli navigasi dari layar */
+        input[type="radio"].nav-logic {
+            display: none;
+        }
+
+        /* Menu navigasi berbentuk baris/list horizontal di tengah */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            list-style: none;
+        }
+
+        /* Desain tombol navigasi kapsul yang dibuat dari elemen label */
+        .nav-label {
+            padding: 10px 25px;
+            border: 2px solid var(--pink-accent);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--pink-accent);
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Efek interaktif warna saat tombol menu didekati pointer mouse */
+        .nav-label:hover {
+            background-color: var(--soft-pink);
+            border-color: var(--pink-hover);
+            color: var(--pink-hover);
+        }
+
+        /* Menyembunyikan semua konten halaman secara default */
+        .page {
+            display: none;
+        }
+
+        /* Logika menampilkan halaman yang sesuai berdasarkan status radio button yang aktif */
+        #btn-1:checked~.container #home-page,
+        #btn-2:checked~.container #jadwal-page,
+        #btn-3:checked~.container #tugas-page {
+            display: block;
+        }
+
+        /* Mengubah warna latar dan teks tombol menu yang sedang aktif/diklik */
+        #btn-1:checked~.container .l1,
+        #btn-2:checked~.container .l2,
+        #btn-3:checked~.container .l3 {
+            background-color: var(--pink-accent);
+            color: var(--white);
+            border-color: var(--pink-accent);
+        }
+
+        /* Konten Beranda & area latar belakang formulir identitas */
+        .form-identity {
+            background: var(--soft-pink);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        /* Mengatur jarak vertikal antar baris kolom input */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* Desain teks label petunjuk di atas kotak input */
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Kotak input teks pada pengisian formulir identitas */
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        /* Mengubah warna border kotak input identitas saat sedang diketik */
+        .form-group input[type="text"]:focus {
+            border-color: var(--pink-accent);
+        }
+
+        /* Pembungkus tabel untuk memunculkan scrollbar jika layar hp kesempitan */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--soft-pink);
+        }
+
+        /* Struktur utama elemen tabel jadwal pelajaran */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        /* Aturan umum untuk garis pembatas dan ruang dalam sel tabel */
+        th,
+        td {
+            border: 1px solid var(--soft-pink);
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        /* Desain khusus baris kepala tabel (nama-nama hari) */
+        th {
+            background-color: var(--pink-accent);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        /* Desain kolom pertama tabel yang berisi penomoran angka jam */
+        td:first-child {
+            width: 60px;
+            font-weight: bold;
+            background-color: rgba(252, 228, 236, 0.3);
+        }
+
+        /* Kolom input teks tempat mengetik isi pelajaran di dalam tabel */
+        .input-table {
+            width: 100%;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            padding: 6px;
+            background: transparent;
+            text-align: center;
+            outline: none;
+            color: var(--text-color);
+            font-size: 14px;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        /* Perubahan warna latar dan munculnya border saat kolom jadwal diklik */
+        .input-table:focus {
+            background-color: var(--white);
+            border-color: var(--pink-accent);
+        }
+
+        /* Menghilangkan tanda titik (bullet) bawaan dari daftar list tugas */
+        .task-list {
+            list-style: none;
+        }
+
+        /* Mengatur tata letak komponen dalam satu baris tugas agar sejajar */
+        .task-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--soft-pink);
+        }
+
+        /* Wadah fleksibel penampung kotak nama tugas dan tanggal deadline */
+        .task-row-content {
+            flex-grow: 1;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Desain dasar elemen kotak input di dalam daftar tugas */
+        .input-task {
+            border: 1px solid var(--soft-pink);
+            padding: 10px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        /* Mengatur proporsi ukuran kotak input teks tugas agar lebih lebar */
+        .input-task[type="text"] {
+            flex: 2 1 200px;
+        }
+
+        /* Mengatur proporsi ukuran kotak input pilihan tanggal deadline */
+        .input-task[type="date"] {
+            flex: 1 1 150px;
+        }
+
+        /* Mengubah warna border kotak tugas menjadi pink cerah saat diklik */
+        .input-task:focus {
+            border-color: var(--pink-accent);
+        }
+
+        /* Menyembunyikan elemen kotak centang (checkbox asli) tugas dari layar */
+        .check-logic {
+            display: none;
+        }
+
+        /* Desain tombol status penanda tugas yang dibuat menggunakan label */
+        .status-label {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: var(--soft-pink);
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid var(--pink-accent);
+            width: 90px;
+            text-align: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Mengubah latar tombol status menjadi putih saat didekati mouse */
+        .status-label:hover {
+            background-color: var(--white);
+        }
+
+        /* Membuat baris konten tugas meluntur transparan jika checkbox dicentang */
+        .check-logic:checked+.task-row-content {
+            opacity: 0.5;
+        }
+
+        /* Memberikan efek garis coret tengah pada teks input tugas yang selesai */
+        .check-logic:checked+.task-row-content .input-task {
+            text-decoration: line-through;
+            background-color: #fafafa;
+        }
+
+        /* Mengubah tema warna tombol status menjadi hijau jika tugas sudah dicentang */
+        .check-logic:checked~.status-label {
+            background-color: var(--success-bg);
+            border-color: var(--success-border);
+            color: var(--success-text);
+        }
+
+        /* Menyisipkan teks kata "Sudah" ke dalam tombol status ketika dicentang */
+        .check-logic:checked~.status-label::after {
+            content: "Sudah";
+        }
+
+        /* Menyisipkan teks kata "Belum" ke dalam tombol status jika tidak dicentang */
+        .check-logic:not(:checked)~.status-label::after {
+            content: "Belum";
+        }
+
+        /* Mengatur tampilan teks judul besar H1 dan H2 agar di tengah dan berwarna pink */
+        h1,
+        h2 {
+            text-align: center;
+            color: var(--pink-accent);
+            text-transform: capitalize;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Baris kontrol utama radio button untuk manajemen tab halaman web -->
+    <input type="radio" name="nav" id="btn-1" class="nav-logic" checked>
+    <input type="radio" name="nav" id="btn-2" class="nav-logic">
+    <input type="radio" name="nav" id="btn-3" class="nav-logic">
+
+    <!-- Container Utama Aplikasi -->
+    <div class="container">
+
+        <!-- Bagian Menu Navigasi Top Bar -->
+        <nav>
+            <ul class="nav-menu">
+                <li><label for="btn-1" class="nav-label l1">Beranda</label></li>
+                <li><label for="btn-2" class="nav-label l2">Jadwal</label></li>
+                <li><label for="btn-3" class="nav-label l3">Tugas</label></li>
+            </ul>
+        </nav>
+
+        <!-- Halaman Konten 1: Beranda -->
+        <div id="home-page" class="page">
+            <h1>Selamat Datang</h1>
+            <p>Halo! Silakan masukkan identitas Anda terlebih dahulu:</p>
+
+            <!-- Struktur Formulir Pengisian Identitas User -->
+            <div class="form-identity">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Anda">
+                </div>
+
+                <div class="form-group">
+                    <label for="kelas">Kelas:</label>
+                    <input type="text" id="kelas" name="kelas" placeholder="Masukkan Kelas Anda">
+                </div>
+            </div>
+
+            <!-- Link Alternatif untuk memicu perubahan tab navigasi -->
+            <p style="margin-top: 20px; text-align: center;">
+                Siap mengatur jadwal? Klik
+                <a href="#btn-2" onclick="document.getElementById('btn-2').checked = true;"
+                    style="color: var(--pink-accent); font-weight: bold; text-decoration: none;">di sini</a>
+                untuk langsung pindah ke menu Jadwal.
+            </p>
+        </div>
+
+        <!-- Halaman Konten 2: Jadwal Pelajaran (12 Baris) -->
+        <div id="jadwal-page" class="page">
+            <h2>Jadwal Pelajaran</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jam</th>
+                            <th>Senin</th>
+                            <th>Selasa</th>
+                            <th>Rabu</th>
+                            <th>Kamis</th>
+                            <th>Jumat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                            <td><input type="text" class="input-table"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Halaman Konten 3: Manajemen List Tugas (10 Baris) -->
+        <div id="tugas-page" class="page">
+            <h2>Tugas</h2>
+            <form action="#" method="post">
+                <ul class="task-list">
+                    <li class="task-row">
+                        <input type="checkbox" id="tk1" name="tk1" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 1" name="nama_tugas1">
+                            <input type="date" class="input-task" name="deadline1">
+                        </div>
+                        <label for="tk1" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk2" name="tk2" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 2" name="nama_tugas2">
+                            <input type="date" class="input-task" name="deadline2">
+                        </div>
+                        <label for="tk2" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk3" name="tk3" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 3" name="nama_tugas3">
+                            <input type="date" class="input-task" name="deadline3">
+                        </div>
+                        <label for="tk3" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk4" name="tk4" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 4" name="nama_tugas4">
+                            <input type="date" class="input-task" name="deadline4">
+                        </div>
+                        <label for="tk4" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk5" name="tk5" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 5" name="nama_tugas5">
+                            <input type="date" class="input-task" name="deadline5">
+                        </div>
+                        <label for="tk5" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk6" name="tk6" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 6" name="nama_tugas6">
+                            <input type="date" class="input-task" name="deadline6">
+                        </div>
+                        <label for="tk6" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk7" name="tk7" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 7" name="nama_tugas7">
+                            <input type="date" class="input-task" name="deadline7">
+                        </div>
+                        <label for="tk7" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk8" name="tk8" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 8" name="nama_tugas8">
+                            <input type="date" class="input-task" name="deadline8">
+                        </div>
+                        <label for="tk8" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk9" name="tk9" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 9" name="nama_tugas9">
+                            <input type="date" class="input-task" name="deadline9">
+                        </div>
+                        <label for="tk9" class="status-label"></label>
+                    </li>
+
+                    <li class="task-row">
+                        <input type="checkbox" id="tk10" name="tk10" class="check-logic">
+                        <div class="task-row-content">
+                            <input type="text" class="input-task" placeholder="Nama Tugas 10" name="nama_tugas10">
+                            <input type="date" class="input-task" name="deadline10">
+                        </div>
+                        <label for="tk10" class="status-label"></label>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
